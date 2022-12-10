@@ -1,8 +1,15 @@
 package com.example.project;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.platform.commons.util.StringUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MyFirstJUnitJupiterTests {
 
@@ -11,5 +18,23 @@ public class MyFirstJUnitJupiterTests {
     @Test
     void addition() {
         assertEquals(2, calculator.add(1,1));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"racecar", "radar", "able was I ere I saw elba"})
+    void palindromes(String candidate) {
+//        assertTrue(StringUtils.isPalindrome(candidate));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = { 1, 2, 3 })
+    void testWithValueSource(int argument) {
+        assertTrue(argument > 0 && argument < 4);
+    }
+    @ParameterizedTest
+    @NullAndEmptySource //@NullSource + @EmptySource
+    @ValueSource(strings = { "", " ", "\t", "\n"})
+    void nullEmptyAndBlankStrings(String text) {
+        assertTrue(text == null || text.trim().isEmpty());
     }
 }
