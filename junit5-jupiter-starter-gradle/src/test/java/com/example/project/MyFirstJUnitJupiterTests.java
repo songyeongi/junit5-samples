@@ -37,4 +37,19 @@ public class MyFirstJUnitJupiterTests {
     void nullEmptyAndBlankStrings(String text) {
         assertTrue(text == null || text.trim().isEmpty());
     }
+
+    @RepeatedTest(10)
+    void repeatedTest() {
+
+    }
+    @RepeatedTest(5)
+    void repeatedTestWithRepetitionInfo(RepetitionInfo repetitionInfo) {
+        assertEquals(5, repetitionInfo.getTotalRepetitions());
+    }
+    @RepeatedTest(value = 1, name = RepeatedTest.LONG_DISPLAY_NAME)
+    @DisplayName("Details...")
+    void customDisplayNameWithLongPattern(TestInfo testInfo) {
+        assertEquals("Details... :: repetition 1 of 1",
+                testInfo.getDisplayName());
+    }
 }
