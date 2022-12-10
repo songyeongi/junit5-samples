@@ -13,6 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MyFirstJUnitJupiterTests {
 
+    /**
+     * 첫 번째 테스트 케이스
+     */
     private final Calculator calculator = new Calculator();
 
     @Test
@@ -20,6 +23,12 @@ public class MyFirstJUnitJupiterTests {
         assertEquals(2, calculator.add(1,1));
     }
 
+    /**
+     * 매개 변수가 있는 테스트를 사용하면 다른 인수를 사용하여 테스트를 여러 번 실행
+     * @ParameterizedTest
+     * @ValueSource
+     * @param candidate
+     */
     @ParameterizedTest
     @ValueSource(strings = {"racecar", "radar", "able was I ere I saw elba"})
     void palindromes(String candidate) {
@@ -38,6 +47,10 @@ public class MyFirstJUnitJupiterTests {
         assertTrue(text == null || text.trim().isEmpty());
     }
 
+    /**
+     * 반복 횟수를 지정하고 메서드에 주석을 추가하여 지정된 횟수만큼 테스트를 반복
+     * @RepeatedTest
+     */
     @RepeatedTest(10)
     void repeatedTest() {
 
